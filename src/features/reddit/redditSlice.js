@@ -5,6 +5,7 @@ export const redditSlice = createSlice({
   initialState: {
     value: 0,
     categories: ['r/Skiing', 'r/Fishing', 'r/Coding', 'r/Cooking'],
+    currentTopic: 'r/Latest',
     posts: [
       { title: 'Reddit Post1',
         msg: 'This is a test message',
@@ -54,5 +55,7 @@ export const selectCount = state => state.reddit.value;
 export const selectCategories = state => state.reddit.categories;
 
 export const selectPosts = state => state.reddit.posts;
+
+export const selectCurrentTopic = state => state.reddit.currentTopic;
 
 export default redditSlice.reducer;
