@@ -5,11 +5,13 @@ import { selectPosts } from '../reddit/redditSlice'
 
 export const PostList = () => {
     const posts = useSelector(selectPosts);
+    const postsList = posts.map(post => {
+        return <PostCard post={post} />
+    })
+    
     return (
         <div>
-            <PostCard post={posts[0]} />
-            <PostCard post={posts[1]} />
-            <PostCard post={posts[2]} />
+            {postsList}
         </div>
     )
 }

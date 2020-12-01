@@ -4,6 +4,9 @@ import App from './App';
 import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import { fetchSubreddits, categoriesUpdated } from './features/reddit/redditSlice'
+
+store.dispatch(fetchSubreddits())
 
 ReactDOM.render(
   <React.StrictMode>

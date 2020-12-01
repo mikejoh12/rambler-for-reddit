@@ -1,15 +1,18 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectCategories } from '../reddit/redditSlice'
+import { List, ListItem, ListItemText } from '@material-ui/core'
 
 export const CategoriesList = () => {
     const categories = useSelector(selectCategories);
+    const categoriesList = categories.map(category => {
+        return <ListItem button>
+                    <ListItemText primary={category} />
+                </ListItem>
+    })
     return (
-        <div>
-            <h4>{categories[0]}</h4>
-            <h4>{categories[1]}</h4>
-            <h4>{categories[2]}</h4>
-            <h4>{categories[3]}</h4>
-        </div>
+        <List>
+            {categoriesList}
+        </List>
     )
 }
