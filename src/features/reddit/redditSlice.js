@@ -34,6 +34,27 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
   }
 })
 
+export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTerm => {
+  try {
+    const response = await axios.get(`https://www.reddit.com/search.json?q=${searchTerm}`)
+    console.log(response.data)
+    const postsArray = response.data.data.children
+    const posts = postsArray.map(item => {
+      return {
+        title: item.data.title,
+        author: item.data.author,
+        subreddit: item.data.subreddit_name_prefixed,
+        imgUrl: item.data.url,
+        thumbnailUrl: item.data.thumbnail,
+        id: item.data.id
+      }
+    })
+    return posts
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 export const redditSlice = createSlice({
   name: 'reddit',
   initialState: {
@@ -47,6 +68,7 @@ export const redditSlice = createSlice({
     }
   },
   extraReducers: {
+    //Reducers for fetching subreddits
     [fetchSubreddits.pending]: (state, action) => {
       state.subredditStatus = 'loading'
     },
@@ -57,6 +79,7 @@ export const redditSlice = createSlice({
     [fetchSubreddits.rejected]: (state, action) => {
       state.subredditStatus = 'failed'
     },
+    //Reducers for fetching posts
     [fetchPosts.pending]: (state, action) => {
       state.postsStatus = 'loading'
     },
@@ -66,6 +89,17 @@ export const redditSlice = createSlice({
     },
     [fetchPosts.rejected]: (state, action) => {
       state.postsStatus = 'failed'
+    },
+    //Search reducers
+    [fetchSearch.pending]: (state, action) => {
+      state.searchStatus = 'loading'
+    },
+    [fetchSearch.fulfilled]: (state, action) => {
+      state.searchStatus = 'succeeded'
+      state.posts = action.payload
+    },
+    [fetchSearch.rejected]: (state, action) => {
+      state.searchStatus = 'failed'
     },
   }
 });

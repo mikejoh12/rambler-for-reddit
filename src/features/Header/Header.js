@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,6 +9,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { useSelector } from 'react-redux'
 import { selectCurrentTopic } from '../reddit/redditSlice'
+import { fetchSearch } from '../reddit/redditSlice'
+import { useDispatch } from 'react-redux'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,6 +71,16 @@ const useStyles = makeStyles((theme) => ({
 export function Header() {
   const classes = useStyles()
   const currentTopic = useSelector(selectCurrentTopic)
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const onSearchTermChanged = e => setSearchTerm(e.target.value)
+
+  const dispatch = useDispatch()
+
+  const onSearchSubmit = e => {
+    e.preventDefault()
+    dispatch(fetchSearch(searchTerm))
+  }
 
   return (
     <div className={classes.root}>
@@ -91,33 +104,20 @@ export function Header() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
+            <form onSubmit={onSearchSubmit}>
+              <InputBase
+                onChange={onSearchTermChanged}
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
             />
+            </form>
           </div>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
-
-/*
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { selectCurrentTopic } from '../reddit/redditSlice'
-
-export const Header = () => {
-    const currentTopic = useSelector(selectCurrentTopic)
-    return (
-        <div>
-            <h1>Rambler for Reddit</h1>
-            <h2>Topic: {currentTopic}</h2>
-        </div>
-    )
-}
-*/
