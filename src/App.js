@@ -13,11 +13,15 @@ function App() {
             <Grid item xs={12}>
               <Header />
             </Grid>
-            <Grid item xs={8} align="center">
+            <Grid item xs={2}> 
+            </Grid>
+            <Grid item xs={6} align="center">
               <PostList />
             </Grid>
-            <Grid item xs={4} align="center">
+            <Grid item xs={2} align="center">
               <CategoriesList />
+            </Grid>
+            <Grid item xs={2}>
             </Grid>
         </Grid>
         </Paper>
