@@ -6,20 +6,22 @@ import Typography from '@material-ui/core/Typography';
 
 export const PostCard = (props) => {
     const { post } = props;
+    
     return (
-        <Card style={{margin: '8px'}}>
-        <CardMedia
-          component="img"
-          alt=""
-          image={post.imgUrl}
-          title={post.title}
-        />
+        <Card>
+            <CardMedia
+                component="img"
+                alt=""
+                image={post.imgUrl}
+                title={post.title}
+            />
+
             <CardContent>
                 <Typography variant="h6" color="textSecondary">
                     {post.title}
                 </Typography>
                 <Typography>
-                    {post.author}
+                    Posted by {post.author}
                 </Typography>
                 <Typography>
                     {post.subreddit}

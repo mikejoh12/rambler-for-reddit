@@ -21,9 +21,10 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async () => {
     const posts = postsArray.map(item => {
       return {
         title: item.data.title,
-        author: item.data.author_fullname,
+        author: item.data.author,
         subreddit: item.data.subreddit_name_prefixed,
-        imgUrl: item.data.url
+        imgUrl: item.data.url,
+        thumbnailUrl: item.data.thumbnail
       }
     })
     return posts
@@ -35,20 +36,15 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async () => {
 export const redditSlice = createSlice({
   name: 'reddit',
   initialState: {
-    categories: ['r/Skiing', 'r/Fishing', 'r/Coding', 'r/Cooking', 'r/Camping', 'r/Flying'],
+    categories: [],
     currentTopic: 'r/popular',
-    posts: [
-      { title: 'Reddit Post1',
-        author: 'Mike Johansson',
-        subreddit: 'r/Test',
-        imgUrl: 'https://preview.redd.it/zf114gzw4l261.jpg?width=640&crop=smart&auto=webp&s=0b090780618414c8dc4c870079046d11a9d07f7d'},
-      { title: 'Reddit Post2',
-        author: 'Mike Johansson',
-        subreddit: 'r/Test2',
-        imgUrl: 'https://preview.redd.it/zf114gzw4l261.jpg?width=640&crop=smart&auto=webp&s=0b090780618414c8dc4c870079046d11a9d07f7d'}
-    ]
+    posts: []
   },
-  reducers: {},
+  reducers: {
+    currentTopicUpdated(state, action) {
+      state.currentTopic = action.payload
+    }
+  },
   extraReducers: {
     [fetchSubreddits.fulfilled]: (state, action) => {
       state.categories = action.payload
@@ -62,5 +58,7 @@ export const redditSlice = createSlice({
 export const selectCategories = state => state.reddit.categories;
 export const selectPosts = state => state.reddit.posts;
 export const selectCurrentTopic = state => state.reddit.currentTopic;
+
+export const { currentTopicUpdated } = redditSlice.actions
 
 export default redditSlice.reducer;
