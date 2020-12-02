@@ -13,9 +13,9 @@ export const fetchSubreddits = createAsyncThunk('reddit/fetchSubreddits', async 
   }
 })
 
-export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async () => {
+export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit => {
   try {
-    const response = await axios.get('https://www.reddit.com/r/popular.json')
+    const response = await axios.get(`https://www.reddit.com/${subreddit}.json`)
     console.log(response.data)
     const postsArray = response.data.data.children
     const posts = postsArray.map(item => {
