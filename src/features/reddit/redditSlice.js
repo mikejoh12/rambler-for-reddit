@@ -47,11 +47,25 @@ export const redditSlice = createSlice({
     }
   },
   extraReducers: {
+    [fetchSubreddits.pending]: (state, action) => {
+      state.subredditStatus = 'loading'
+    },
     [fetchSubreddits.fulfilled]: (state, action) => {
+      state.subredditStatus = 'succeeded'
       state.categories = action.payload
     },
+    [fetchSubreddits.rejected]: (state, action) => {
+      state.subredditStatus = 'failed'
+    },
+    [fetchPosts.pending]: (state, action) => {
+      state.postsStatus = 'loading'
+    },
     [fetchPosts.fulfilled]: (state, action) => {
+      state.postsStatus = 'succeeded'
       state.posts = action.payload
+    },
+    [fetchPosts.rejected]: (state, action) => {
+      state.postsStatus = 'failed'
     },
   }
 });
