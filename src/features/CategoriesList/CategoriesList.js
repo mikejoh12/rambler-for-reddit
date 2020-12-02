@@ -13,8 +13,9 @@ const CategoriesListItem = ({ category }) => {
         dispatch(currentTopicUpdated(category))
     }
 
-    return <ListItem    button
-                        onClick={onCategoryChanged}>
+    return <ListItem  
+                    button
+                    onClick={onCategoryChanged}>
                 <ListItemText primary={category} />
             </ListItem>
 }
@@ -23,16 +24,16 @@ export const CategoriesList = () => {
     const categories = useSelector(selectCategories);
     const dispatch = useDispatch()
 
-    //Fetch new posts when switching subreddit
+    //Fetch new posts
     const currentTopic = useSelector(state => state.reddit.currentTopic)
     useEffect(() => {
-        console.log(`Category: ${currentTopic}`)
         dispatch(fetchPosts(currentTopic))
     }, [currentTopic, dispatch])
 
     const categoriesList = categories.map(category => {
         return <CategoriesListItem 
-            category={category}/>
+            category={category}
+            key={category} />
     })
 
     return (

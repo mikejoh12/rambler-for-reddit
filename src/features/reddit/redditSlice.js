@@ -24,7 +24,8 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
         author: item.data.author,
         subreddit: item.data.subreddit_name_prefixed,
         imgUrl: item.data.url,
-        thumbnailUrl: item.data.thumbnail
+        thumbnailUrl: item.data.thumbnail,
+        id: item.data.id
       }
     })
     return posts

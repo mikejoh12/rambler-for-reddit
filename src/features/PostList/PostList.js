@@ -6,7 +6,9 @@ import { selectPosts } from '../reddit/redditSlice'
 export const PostList = () => {
     const posts = useSelector(selectPosts);
     const postsList = posts.map(post => {
-        return <PostCard post={post} />
+        return <PostCard 
+                    post={post}
+                    key={post.id} />
     })
     
     return (
