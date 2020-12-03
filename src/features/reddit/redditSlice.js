@@ -66,7 +66,7 @@ export const fetchDiscussion = createAsyncThunk('reddit/fetchDiscussion', async 
     const postsArray = response.data[1].data.children
     const posts = postsArray.map(item => {
       return {
-        title: 'Test title',
+        author: item.data.author,
         body: item.data.body,
         id: item.data.id
       }

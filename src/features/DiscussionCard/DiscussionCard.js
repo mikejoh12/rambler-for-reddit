@@ -19,14 +19,11 @@ export const DiscussionCard = (props) => {
     return (
         <Card className={classes.root}>
                 <CardContent>
-                    <Typography variant="h6" color="textSecondary">
-                        {post.title}
+                    <Typography variant="h6" fontStyle="italic" color="textSecondary">
+                        {post.author}
                     </Typography>
-                    <Typography>
+                    <Typography variant="p" color="textSecondary">
                         {post.body}
-                    </Typography>
-                    <Typography>
-                        Posted by {post.author}
                     </Typography>
                 </CardContent>
         </Card>

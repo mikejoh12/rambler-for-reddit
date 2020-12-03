@@ -26,12 +26,8 @@ export const DiscussionList = () => {
     }
         
     return (
-        <div>
-            <h2>Discussion Page. Id: {id}. Subreddit: {subreddit}</h2>
-
             <div>
                 {discussionList}
             </div>
-        </div>
     )
 }
