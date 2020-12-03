@@ -19,14 +19,18 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
     console.log(response.data)
     const postsArray = response.data.data.children
     const posts = postsArray.map(item => {
-      return {
+      const postData = {
         title: item.data.title,
         author: item.data.author,
         subreddit: item.data.subreddit_name_prefixed,
         imgUrl: item.data.url,
         thumbnailUrl: item.data.thumbnail,
-        id: item.data.id
+        id: item.data.id,
       }
+      if (item.data.is_video) {
+        postData.videoUrl = item.data.media.reddit_video.fallback_url
+      }
+      return postData
     })
     return posts
   } catch (error) {

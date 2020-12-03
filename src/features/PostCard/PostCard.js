@@ -10,7 +10,7 @@ const useStyles = makeStyles({
       margin: 10
     },
     media: {
-      height: 140,
+        maxWidth: 140
     },
   });
 
@@ -26,6 +26,15 @@ export const PostCard = (props) => {
                 image={post.imgUrl}
                 title={post.title}
             />
+
+            {post.videoUrl && <CardMedia 
+                component="video"
+                height="200"
+                autoPlay
+                controls
+                image={post.videoUrl}
+                title={post.title}
+            />}
 
             <CardContent>
                 <Typography variant="h6" color="textSecondary">
