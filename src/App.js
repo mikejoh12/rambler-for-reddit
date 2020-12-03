@@ -1,6 +1,7 @@
 import React from 'react'
-import { CategoriesList } from './features/CategoriesList/CategoriesList'
 import { Header } from './features/Header/Header'
+import { CategoriesList } from './features/CategoriesList/CategoriesList'
+import { DiscussionList } from './features/DiscussionList/DiscussionList'
 import { PostList } from './features/PostList/PostList'
 import { Grid } from '@material-ui/core'
 import { Paper } from '@material-ui/core'
@@ -25,6 +26,7 @@ function App() {
             <Grid item xs={6} align="center">
               <Switch>
                 <Route path="/" exact component={PostList} />
+                <Route path="/discussion/:subreddit/:id" children={<DiscussionList />} />
               </Switch>
             </Grid>
 
