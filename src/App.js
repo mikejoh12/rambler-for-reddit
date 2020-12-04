@@ -2,6 +2,7 @@ import React from 'react'
 import { Header } from './features/Header/Header'
 import { CategoriesList } from './features/CategoriesList/CategoriesList'
 import { DiscussionList } from './features/DiscussionList/DiscussionList'
+import { SearchList } from './features/SearchList/SearchList'
 import { PostList } from './features/PostList/PostList'
 import { Grid } from '@material-ui/core'
 import { Paper } from '@material-ui/core'
@@ -31,6 +32,7 @@ function App() {
                 </Route>
                 <Route path="/r/:subreddit" children={<PostList />} />
                 <Route path="/discussion/:subreddit/:id" children={<DiscussionList />} />
+                <Route path="/search/:searchTerm" children={<SearchList />} />
               </Switch>
             </Grid>
 
