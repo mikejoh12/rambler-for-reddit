@@ -70,7 +70,6 @@ const useStyles = makeStyles((theme) => ({
 
 export function Header() {
   const classes = useStyles()
-  const currentTopic = useSelector(selectCurrentTopic)
   const [searchTerm, setSearchTerm] = useState('')
 
   const onSearchTermChanged = e => setSearchTerm(e.target.value)
@@ -96,9 +95,6 @@ export function Header() {
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             Rambler for Reddit
-          </Typography>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Topic: {currentTopic}
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

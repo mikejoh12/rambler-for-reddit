@@ -3,6 +3,7 @@ import { PostCard } from '../PostCard/PostCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectPosts, fetchPosts } from '../reddit/redditSlice'
 import { useParams } from 'react-router-dom'
+import { Typography } from '@material-ui/core'
 
 export const PostList = () => {
     
@@ -24,6 +25,9 @@ export const PostList = () => {
     
     return (
         <div>
+                <Typography variant="h6" color="textPrimary">
+                    {`r/${subreddit}`}
+                </Typography>
             {postsList}
         </div>
     )

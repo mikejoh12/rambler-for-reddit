@@ -2,21 +2,14 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectCategories } from '../reddit/redditSlice'
 import { List, ListItem, ListItemText } from '@material-ui/core'
-import { useDispatch } from 'react-redux'
-import { currentTopicUpdated } from '../reddit/redditSlice'
-
+import { Link } from 'react-router-dom'
 
 const CategoriesListItem = ({ category }) => {
 
-    const dispatch = useDispatch()
-
-    const onCategoryChanged = () => {
-        dispatch(currentTopicUpdated(category))
-    }
-
     return <ListItem  
                     button
-                    onClick={onCategoryChanged}>
+                    component={Link}
+                    to={`/r/${category}`}>
                 <ListItemText primary={`r/${category}`} />
             </ListItem>
 }
