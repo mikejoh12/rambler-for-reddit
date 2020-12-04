@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react'
-import { PostCard } from '../PostCard/PostCard'
+import { PostCard } from './PostCard'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectPosts, fetchSearch } from '../reddit/redditSlice'
+import { selectPosts, fetchPosts } from '../reddit/redditSlice'
 import { useParams } from 'react-router-dom'
 import { Typography } from '@material-ui/core'
 
-export const SearchList = () => {
+export const PostList = () => {
     
-    let { searchTerm } = useParams()
+    let { subreddit } = useParams()
 
     //Fetch new posts
     const dispatch = useDispatch()
     
     useEffect(() => {
-        dispatch(fetchSearch(searchTerm))
-    }, [dispatch, searchTerm])
+        dispatch(fetchPosts(subreddit))
+    }, [subreddit, dispatch])
     
     const posts = useSelector(selectPosts);
     const postsList = posts.map(post => {
@@ -26,7 +26,7 @@ export const SearchList = () => {
     return (
         <div>
             <Typography variant="h6" color="textPrimary">
-                Search Results:
+                {`r/${subreddit}`}
             </Typography>
             {postsList}
         </div>

@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const axios = require('axios')
 
+const upsKFormatter = num => {
+  return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+}
+
 export const fetchSubreddits = createAsyncThunk('reddit/fetchSubreddits', async () => {
   try {
     const response = await axios.get('https://www.reddit.com/subreddits.json')
@@ -26,6 +30,8 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
         imgUrl: item.data.url,
         thumbnailUrl: item.data.thumbnail,
         id: item.data.id,
+        ups: upsKFormatter(item.data.ups),
+        created_utc: item.data.created_utc
       }
       if (item.data.is_video) {
         postData.videoUrl = item.data.media.reddit_video.fallback_url
@@ -50,7 +56,9 @@ export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTe
         subreddit: item.data.subreddit,
         imgUrl: item.data.url,
         thumbnailUrl: item.data.thumbnail,
-        id: item.data.id
+        id: item.data.id,
+        ups: upsKFormatter(item.data.ups),
+        created_utc: item.data.created_utc
       }
     })
     return posts
@@ -68,7 +76,9 @@ export const fetchDiscussion = createAsyncThunk('reddit/fetchDiscussion', async 
       return {
         author: item.data.author,
         body: item.data.body,
-        id: item.data.id
+        id: item.data.id,
+        ups: upsKFormatter(item.data.ups),
+        created_utc: item.data.created_utc
       }
     })
     return posts

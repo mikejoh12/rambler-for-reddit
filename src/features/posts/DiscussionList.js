@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { DiscussionCard } from '../DiscussionCard/DiscussionCard'
+import { DiscussionCard } from './DiscussionCard'
 import { selectDiscussion, fetchDiscussion } from '../reddit/redditSlice'
 import { Typography } from '@material-ui/core'
 
