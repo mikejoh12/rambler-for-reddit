@@ -8,7 +8,8 @@ import { Paper } from '@material-ui/core'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 
 function App() {
@@ -25,7 +26,10 @@ function App() {
             
             <Grid item xs={6} align="center">
               <Switch>
-                <Route path="/" exact component={PostList} />
+                <Route exact path="/">
+                  <Redirect to="/r/popular" />
+                </Route>
+                <Route path="/r/:subreddit" children={<PostList />} />
                 <Route path="/discussion/:subreddit/:id" children={<DiscussionList />} />
               </Switch>
             </Grid>
