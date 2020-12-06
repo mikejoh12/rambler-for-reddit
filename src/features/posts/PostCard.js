@@ -7,14 +7,14 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom'
 import { TimeAgo } from './TimeAgo'
+import SwapVertOutlinedIcon from '@material-ui/icons/SwapVertOutlined';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import { Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
     root: {
       margin: 10
-    },
-    media: {
-        maxWidth: 140
-    },
+    }
   });
 
 export const PostCard = (props) => {
@@ -41,9 +41,13 @@ export const PostCard = (props) => {
                 />}
 
                 <CardContent>
-                    <Typography variant="body1" align="left">
-                            {post.ups}
-                    </Typography>
+                    <Grid container direction="row" alignItems="center">
+                        <SwapVertOutlinedIcon fontSize="small" />
+                        <Typography variant="caption" align="left">
+                                {post.ups}
+                        </Typography>
+                    </Grid>
+                    
                     <Typography variant="body1" color="textSecondary">
                         Posted by {post.author}
                         <TimeAgo timestamp={post.created_utc} />
@@ -54,6 +58,13 @@ export const PostCard = (props) => {
                     <Typography>
                         {`r/${post.subreddit}`}
                     </Typography>
+
+                    <Grid container direction="row" alignItems="center">
+                        <ChatBubbleOutlineIcon fontSize="small" />
+                        <Typography variant="caption" align="left">
+                                {post.num_comments}
+                        </Typography>
+                    </Grid>
                 </CardContent>
             </CardActionArea>
         </Card>

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const axios = require('axios')
 
-const upsKFormatter = num => {
+const kFormatter = num => {
   if (isNaN(num)) {
     return ''
   }
@@ -11,7 +11,6 @@ const upsKFormatter = num => {
 export const fetchSubreddits = createAsyncThunk('reddit/fetchSubreddits', async () => {
   try {
     const response = await axios.get('https://www.reddit.com/subreddits.json')
-    console.log(response.data)
     const subredditArray = response.data.data.children
     const categories = subredditArray.map(item => {
       return {
@@ -28,7 +27,6 @@ export const fetchSubreddits = createAsyncThunk('reddit/fetchSubreddits', async 
 export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit => {
   try {
     const response = await axios.get(`https://www.reddit.com/r/${subreddit}.json`)
-    console.log(response.data)
     const postsArray = response.data.data.children
     const posts = postsArray.map(item => {
       const postData = {
@@ -38,8 +36,9 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
         imgUrl: item.data.url,
         thumbnailUrl: item.data.thumbnail,
         id: item.data.id,
-        ups: upsKFormatter(item.data.ups),
-        created_utc: item.data.created_utc
+        ups: kFormatter(item.data.ups),
+        created_utc: item.data.created_utc,
+        num_comments: kFormatter(item.data.num_comments)
       }
       if (item.data.is_video) {
         postData.videoUrl = item.data.media.reddit_video.fallback_url
@@ -55,8 +54,6 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
 export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTerm => {
   try {
     const response = await axios.get(`https://www.reddit.com/search.json?q=${searchTerm}`)
-    console.log('Searching')
-    console.log(response.data)
     const postsArray = response.data.data.children
     const posts = postsArray.map(item => {
       return {
@@ -66,8 +63,9 @@ export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTe
         imgUrl: item.data.url,
         thumbnailUrl: item.data.thumbnail,
         id: item.data.id,
-        ups: upsKFormatter(item.data.ups),
-        created_utc: item.data.created_utc
+        ups: kFormatter(item.data.ups),
+        created_utc: item.data.created_utc,
+        num_comments: kFormatter(item.data.num_comments)
       }
     })
     return posts
@@ -79,14 +77,13 @@ export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTe
 export const fetchDiscussion = createAsyncThunk('reddit/fetchDiscussion', async (discussionPath) => {
   try {
     const response = await axios.get(`https://www.reddit.com/${discussionPath}`)
-    console.log(response.data)
     const postsArray = response.data[1].data.children
     const posts = postsArray.map(item => {
       return {
         author: item.data.author,
         body: item.data.body,
         id: item.data.id,
-        ups: upsKFormatter(item.data.ups),
+        ups: kFormatter(item.data.ups),
         created_utc: item.data.created_utc
       }
     })

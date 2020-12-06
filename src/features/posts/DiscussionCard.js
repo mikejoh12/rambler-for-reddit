@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import { TimeAgo } from './TimeAgo'
+import SwapVertOutlinedIcon from '@material-ui/icons/SwapVertOutlined';
+import { Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
     root: {
@@ -20,9 +22,14 @@ export const DiscussionCard = (props) => {
     return (
         <Card className={classes.root}>
                 <CardContent>
-                        <Typography variant="body1" align="left">
-                            {post.ups} 
+
+                    <Grid container direction="row" alignItems="center">
+                        <SwapVertOutlinedIcon fontSize="small" />
+                        <Typography variant="caption" align="left">
+                                {post.ups}
                         </Typography>
+                    </Grid>
+
                         <Typography variant="body1" color="textSecondary">
                             Posted by {post.author}
                             <TimeAgo timestamp={post.created_utc} />
