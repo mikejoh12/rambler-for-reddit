@@ -2,6 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const axios = require('axios')
 
 const upsKFormatter = num => {
+  if (isNaN(num)) {
+    return ''
+  }
   return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
 }
 
@@ -10,7 +13,12 @@ export const fetchSubreddits = createAsyncThunk('reddit/fetchSubreddits', async 
     const response = await axios.get('https://www.reddit.com/subreddits.json')
     console.log(response.data)
     const subredditArray = response.data.data.children
-    const categories = subredditArray.map(item => item.data.display_name)
+    const categories = subredditArray.map(item => {
+      return {
+        subreddit: item.data.display_name,
+        icon_img: item.data.icon_img
+      }
+    })
     return categories
   } catch (error) {
     console.log(error)
@@ -47,6 +55,7 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
 export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTerm => {
   try {
     const response = await axios.get(`https://www.reddit.com/search.json?q=${searchTerm}`)
+    console.log('Searching')
     console.log(response.data)
     const postsArray = response.data.data.children
     const posts = postsArray.map(item => {
@@ -90,6 +99,10 @@ export const fetchDiscussion = createAsyncThunk('reddit/fetchDiscussion', async 
 export const redditSlice = createSlice({
   name: 'reddit',
   initialState: {
+    subredditStatus: 'idle',
+    postsStatus: 'idle',
+    searchStatus: 'idle',
+    discussionStatus: 'idle',
     categories: [],
     posts: [],
     discussion: []
@@ -151,7 +164,6 @@ export const selectCategories = state => state.reddit.categories;
 export const selectPosts = state => state.reddit.posts;
 export const selectCurrentTopic = state => state.reddit.currentTopic;
 export const selectDiscussion = state => state.reddit.discussion;
-
 export const { currentTopicUpdated } = redditSlice.actions
 
 export default redditSlice.reducer;

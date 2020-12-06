@@ -26,9 +26,16 @@ export const SearchList = () => {
     return (
         <div>
             <Typography variant="h6" color="textPrimary">
-                Search Results:
+                Search Results ({searchTerm}):
             </Typography>
-            {postsList}
+            { postsList.length ? postsList :
+            <div>
+                <Typography variant="body1">
+                    Your search did not return any results.
+                </Typography>
+            </div>
+            
+        }
         </div>
     )
 }

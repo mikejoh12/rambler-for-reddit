@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from 'react-router-dom'
-
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
+  appbar: {
+    alignItems: 'center'
   },
   title: {
     flexGrow: 1,
-    display: 'none',
+    display: 'block',
+    fontSize: '2rem',
+    textAlign: 'center',
+    color: 'white',
+    textTransform: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
+      marginLeft: theme.spacing(5),
       width: 'auto',
     },
   },
@@ -53,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    paddingLeft: `calc(1em + ${theme.spacing(6)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -75,30 +77,25 @@ export function Header() {
 
   const onSearchSubmit = e => {
     e.preventDefault()
+    setSearchTerm('')
     history.push(`/search/${searchTerm}`)
   }
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appbar}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Button component={Link} to="/r/popular" className={classes.title} size="medium">
             Rambler for Reddit
-          </Typography>
+          </Button>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <form onSubmit={onSearchSubmit}>
               <InputBase
+                value={searchTerm}
+                required
                 onChange={onSearchTermChanged}
                 placeholder="Search…"
                 classes={{

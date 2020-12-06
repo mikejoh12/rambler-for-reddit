@@ -14,7 +14,7 @@ export const TimeAgo = ({ timestamp }) => {
 
     return (
     <span title={timestamp}>
-        &nbsp; <i>{timeAgo}</i>
+        &nbsp;{timeAgo}
     </span>
     )
 }

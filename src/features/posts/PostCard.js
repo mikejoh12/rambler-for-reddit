@@ -23,7 +23,7 @@ export const PostCard = (props) => {
 
     return (
         <Card className={classes.root}>
-            <CardActionArea component={Link} to={`/discussion/${post.subreddit}/${post.id}`}>
+            <CardActionArea component={Link} to={`/discussion/${post.subreddit}/${post.id}`} onClick={() => window.scrollTo(0, 0)}>
                 <CardMedia
                     component="img"
                     alt=""
@@ -42,15 +42,15 @@ export const PostCard = (props) => {
 
                 <CardContent>
                     <Typography variant="body1" align="left">
-                            {post.ups} 
+                            {post.ups}
                     </Typography>
-                    <Typography variant="h6" color="textSecondary">
+                    <Typography variant="body1" color="textSecondary">
+                        Posted by {post.author}
+                        <TimeAgo timestamp={post.created_utc} />
+                    </Typography>
+                    <Typography variant="h6" color="textPrimary">
                         {post.title}
                     </Typography>
-                    <Typography>
-                        Posted by {post.author}
-                    </Typography>
-                    <TimeAgo timestamp={post.created_utc} />
                     <Typography>
                         {`r/${post.subreddit}`}
                     </Typography>
