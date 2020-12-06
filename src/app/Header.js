@@ -85,7 +85,7 @@ export function Header() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appbar}>
         <Toolbar>
-          <Button component={Link} to="/r/popular" className={classes.title} size="medium">
+          <Button component={Link} to="/r/pics" className={classes.title} size="medium">
             Rambler for Reddit
           </Button>
           <div className={classes.search}>

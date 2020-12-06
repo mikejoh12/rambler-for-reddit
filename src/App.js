@@ -28,7 +28,7 @@ function App() {
             <Grid item xs={7} md={4} align="center">
               <Switch>
                 <Route exact path="/">
-                  <Redirect to="/r/popular" />
+                  <Redirect to="/r/pics" />
                 </Route>
                 <Route path="/r/:subreddit" children={<PostList />} />
                 <Route path="/discussion/:subreddit/:id" children={<DiscussionList />} />
