@@ -22,7 +22,6 @@ export const DiscussionCard = (props) => {
     return (
         <Card className={classes.root}>
                 <CardContent>
-
                     <Grid container direction="row" alignItems="center">
                         <SwapVertOutlinedIcon fontSize="small" />
                         <Typography variant="caption" align="left">

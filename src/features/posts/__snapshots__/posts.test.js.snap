@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DiscussionCard component should render with given state from Redux store 1`] = `ShallowWrapper {}`;
+
+exports[`DiscussionList component should render with given state from Redux store 1`] = `ShallowWrapper {}`;
+
+exports[`PostCard component should render with given state from Redux store 1`] = `ShallowWrapper {}`;
+
+exports[`PostList component should render with given state from Redux store 1`] = `ShallowWrapper {}`;
+
+exports[`TimeAgo component should render with given state from Redux store 1`] = `ShallowWrapper {}`;
