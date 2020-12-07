@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const axios = require('axios')
 
-const kFormatter = num => {
+export const kFormatter = num => {
   if (isNaN(num)) {
     return ''
   }
@@ -103,11 +103,6 @@ export const redditSlice = createSlice({
     categories: [],
     posts: [],
     discussion: []
-  },
-  reducers: {
-    currentTopicUpdated(state, action) {
-      state.currentTopic = action.payload
-    }
   },
   extraReducers: {
     //Reducers for fetching subreddits
