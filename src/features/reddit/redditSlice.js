@@ -56,7 +56,7 @@ export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTe
     const response = await axios.get(`https://www.reddit.com/search.json?q=${searchTerm}`)
     const postsArray = response.data.data.children
     const posts = postsArray.map(item => {
-      return {
+        const postData = {
         title: item.data.title,
         author: item.data.author,
         subreddit: item.data.subreddit,
@@ -67,6 +67,10 @@ export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTe
         created_utc: item.data.created_utc,
         num_comments: kFormatter(item.data.num_comments)
       }
+      if (item.data.is_video) {
+        postData.videoUrl = item.data.media.reddit_video.fallback_url
+      }
+      return postData
     })
     return posts
   } catch (error) {
@@ -154,8 +158,5 @@ export const redditSlice = createSlice({
 
 export const selectCategories = state => state.reddit.categories;
 export const selectPosts = state => state.reddit.posts;
-export const selectCurrentTopic = state => state.reddit.currentTopic;
 export const selectDiscussion = state => state.reddit.discussion;
-export const { currentTopicUpdated } = redditSlice.actions
-
 export default redditSlice.reducer;
