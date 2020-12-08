@@ -45,10 +45,12 @@ export const SearchList = () => {
 
     return (
         <div>
-            <Typography variant="h6" color="textPrimary">
-                Search Results ({searchTerm}):
-            </Typography>
-            { results }
+            { (results.length) ? results :
+                        <Typography variant="h6" color="textPrimary">
+                            No results on this page ({searchTerm}):
+                        </Typography>
+            
+            }
         </div>
     )
 }

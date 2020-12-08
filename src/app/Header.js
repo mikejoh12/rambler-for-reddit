@@ -97,7 +97,7 @@ export function Header() {
                 value={searchTerm}
                 required
                 onChange={onSearchTermChanged}
-                placeholder="Search…"
+                placeholder="Search page.."
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
