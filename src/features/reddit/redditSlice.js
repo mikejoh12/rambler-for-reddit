@@ -55,6 +55,7 @@ export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTe
   try {
     const response = await axios.get(`https://www.reddit.com/search.json?q=${searchTerm}`)
     const postsArray = response.data.data.children
+    console.log(postsArray)
     const posts = postsArray.map(item => {
         const postData = {
         title: item.data.title,
@@ -67,7 +68,7 @@ export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTe
         created_utc: item.data.created_utc,
         num_comments: kFormatter(item.data.num_comments)
       }
-      if (item.data.is_video) {
+      if (item.data.media && item.data.is_video) {
         postData.videoUrl = item.data.media.reddit_video.fallback_url
       }
       return postData

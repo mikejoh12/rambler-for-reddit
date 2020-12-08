@@ -13,7 +13,8 @@ import { Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
     root: {
-      margin: 10
+      margin: 10,
+      backgroundColor: '#EEEEEE'
     }
   });
 

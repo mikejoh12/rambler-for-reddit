@@ -29,12 +29,7 @@ export const SearchList = () => {
                                     post={post}
                                     key={post.id} />
                     })
-            }                            
-            <div>
-                <Typography variant="body1">
-                    Your search did not return any results.
-                </Typography>
-            </div>
+            }
         </div>
     )
 }

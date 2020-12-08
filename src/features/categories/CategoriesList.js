@@ -13,6 +13,7 @@ const CategoriesListItem = ({ category, icon_img }) => {
     const useStyles = makeStyles({
         root: {
           margin: 10,
+          backgroundColor: '#BBBBBB'
         }
       });
     
