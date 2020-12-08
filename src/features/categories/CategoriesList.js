@@ -35,19 +35,19 @@ const CategoriesListItem = ({ category, icon_img }) => {
 export const CategoriesList = () => {
     const categories = useSelector(selectCategories);
 
-    const categoriesList = categories.map(item => {
-        return <CategoriesListItem 
-            category={item.subreddit}
-            key={item.subreddit}
-            icon_img={item.icon_img} />
-    })
-
     return (
             <div>
                 <Typography variant="h6" color="textPrimary">
                     Subreddits
                 </Typography>
-                {categoriesList}
+                {
+                    categories && categories.map(item => {
+                        return <CategoriesListItem 
+                            category={item.subreddit}
+                            key={item.subreddit}
+                            icon_img={item.icon_img} />
+                    })
+                }
             </div>
     )
 }

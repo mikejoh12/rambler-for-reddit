@@ -16,22 +16,18 @@ export const DiscussionList = () => {
     useEffect(() => {
         dispatch(fetchDiscussion(`r/${subreddit}/${id}.json`))
     }, [subreddit, id, dispatch])
-
-    let discussionList
-    if (discussion) {
-        discussionList = discussion.map(post => {
-            return <DiscussionCard 
-                        post={post}
-                        key={post.id} />
-        })
-    }
-        
+ 
     return (
             <div>
                 <Typography variant="h6" color="textPrimary">
                     {`r/${subreddit}`}
                 </Typography>
-                {discussionList}
+                {discussion && discussion.map(post => {
+                    return <DiscussionCard 
+                        post={post}
+                        key={post.id} />
+                    })
+                }
             </div>
     )
 }

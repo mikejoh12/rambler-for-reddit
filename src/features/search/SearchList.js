@@ -17,25 +17,24 @@ export const SearchList = () => {
     }, [dispatch, searchTerm])
     
     const posts = useSelector(selectPosts);
-    const postsList = posts.map(post => {
-        return <PostCard 
-                    post={post}
-                    key={post.id} />
-    })
-    
+
     return (
         <div>
             <Typography variant="h6" color="textPrimary">
                 Search Results ({searchTerm}):
             </Typography>
-            { postsList.length ? postsList :
+            { posts &&
+                    posts.map(post => {
+                        return <PostCard 
+                                    post={post}
+                                    key={post.id} />
+                    })
+            }                            
             <div>
                 <Typography variant="body1">
                     Your search did not return any results.
                 </Typography>
             </div>
-            
-        }
         </div>
     )
 }

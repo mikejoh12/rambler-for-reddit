@@ -17,18 +17,18 @@ export const PostList = () => {
     }, [subreddit, dispatch])
     
     const posts = useSelector(selectPosts);
-    const postsList = posts.map(post => {
-        return <PostCard 
-                    post={post}
-                    key={post.id} />
-    })
     
     return (
         <div>
             <Typography variant="h6" color="textPrimary">
                 {`r/${subreddit}`}
             </Typography>
-            {postsList}
+            {posts && posts.map(post => {
+                return <PostCard 
+                        post={post}
+                        key={post.id} />
+                })
+            }       
         </div>
     )
 }
