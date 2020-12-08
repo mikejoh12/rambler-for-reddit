@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { DiscussionCard } from './DiscussionCard'
-import { selectDiscussion, fetchDiscussion } from '../reddit/redditSlice'
+import { selectDiscussion, fetchDiscussion, searchTargetUpdated } from '../reddit/redditSlice'
 import { Typography } from '@material-ui/core'
 
 export const DiscussionList = () => {
@@ -11,6 +11,10 @@ export const DiscussionList = () => {
     
     const discussion = useSelector(selectDiscussion);
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(searchTargetUpdated('discussion'))
+    }, [dispatch])
 
     //Fetch new posts
     useEffect(() => {

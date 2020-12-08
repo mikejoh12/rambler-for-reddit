@@ -51,34 +51,6 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
   }
 })
 
-export const fetchSearch = createAsyncThunk('reddit/fetchSearch', async searchTerm => {
-  try {
-    const response = await axios.get(`https://www.reddit.com/search.json?q=${searchTerm}`)
-    const postsArray = response.data.data.children
-    console.log(postsArray)
-    const posts = postsArray.map(item => {
-        const postData = {
-        title: item.data.title,
-        author: item.data.author,
-        subreddit: item.data.subreddit,
-        imgUrl: item.data.url,
-        thumbnailUrl: item.data.thumbnail,
-        id: item.data.id,
-        ups: kFormatter(item.data.ups),
-        created_utc: item.data.created_utc,
-        num_comments: kFormatter(item.data.num_comments)
-      }
-      if (item.data.media && item.data.is_video) {
-        postData.videoUrl = item.data.media.reddit_video.fallback_url
-      }
-      return postData
-    })
-    return posts
-  } catch (error) {
-    console.log(error)
-  }
-})
-
 export const fetchDiscussion = createAsyncThunk('reddit/fetchDiscussion', async (discussionPath) => {
   try {
     const response = await axios.get(`https://www.reddit.com/${discussionPath}`)
@@ -107,7 +79,13 @@ export const redditSlice = createSlice({
     discussionStatus: 'idle',
     categories: [],
     posts: [],
-    discussion: []
+    discussion: [],
+    searchTarget: 'posts'
+  },
+  reducers: {
+    searchTargetUpdated(state, action) {
+      state.searchTarget = action.payload
+    }
   },
   extraReducers: {
     //Reducers for fetching subreddits
@@ -132,17 +110,6 @@ export const redditSlice = createSlice({
     [fetchPosts.rejected]: (state, action) => {
       state.postsStatus = 'failed'
     },
-    //Search reducers
-    [fetchSearch.pending]: (state, action) => {
-      state.searchStatus = 'loading'
-    },
-    [fetchSearch.fulfilled]: (state, action) => {
-      state.searchStatus = 'succeeded'
-      state.posts = action.payload
-    },
-    [fetchSearch.rejected]: (state, action) => {
-      state.searchStatus = 'failed'
-    },
     //Reducers for fetching discussion
     [fetchDiscussion.pending]: (state, action) => {
       state.discussionStatus = 'loading'
@@ -157,7 +124,9 @@ export const redditSlice = createSlice({
   }
 });
 
-export const selectCategories = state => state.reddit.categories;
-export const selectPosts = state => state.reddit.posts;
-export const selectDiscussion = state => state.reddit.discussion;
-export default redditSlice.reducer;
+export const { searchTargetUpdated } = redditSlice.actions
+export const selectCategories = state => state.reddit.categories
+export const selectPosts = state => state.reddit.posts
+export const selectDiscussion = state => state.reddit.discussion
+export const selectSearchTarget = state => state.reddit.searchTarget
+export default redditSlice.reducer

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectPosts, fetchPosts } from '../reddit/redditSlice'
 import { useParams } from 'react-router-dom'
 import { Typography } from '@material-ui/core'
+import { searchTargetUpdated } from '../reddit/redditSlice'
 
 export const PostList = () => {
     
@@ -12,6 +13,10 @@ export const PostList = () => {
     //Fetch new posts
     const dispatch = useDispatch()
     
+    useEffect(() => {
+        dispatch(searchTargetUpdated('posts'))
+    }, [dispatch])
+
     useEffect(() => {
         dispatch(fetchPosts(subreddit))
     }, [subreddit, dispatch])

@@ -2,13 +2,13 @@ import React from 'react'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import CardActionArea from '@material-ui/core/CardActionArea'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
 import { TimeAgo } from './TimeAgo'
-import SwapVertOutlinedIcon from '@material-ui/icons/SwapVertOutlined';
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import SwapVertOutlinedIcon from '@material-ui/icons/SwapVertOutlined'
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline'
 import { Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
@@ -22,9 +22,13 @@ export const PostCard = (props) => {
     const { post } = props;
     const classes = useStyles()
 
+    const handleClick = () => {
+        window.scrollTo(0, 0)
+    }
+
     return (
         <Card className={classes.root}>
-            <CardActionArea component={Link} to={`/discussion/${post.subreddit}/${post.id}`} onClick={() => window.scrollTo(0, 0)}>
+            <CardActionArea component={Link} to={`/discussion/${post.subreddit}/${post.id}`} onClick={handleClick}>
                 <CardMedia
                     component="img"
                     alt=""

@@ -10,7 +10,8 @@ const initialState = {
     discussionStatus: 'idle',
     categories: [],
     posts: [],
-    discussion: []
+    discussion: [],
+    searchTarget: 'posts'
   }
 
 describe('redditSlice', () => {
