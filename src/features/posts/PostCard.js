@@ -28,8 +28,16 @@ export const PostCard = (props) => {
 
     return (
     <Grid item>
-    <Card className={classes.root}>
-        <CardActionArea component={Link} to={`/discussion/${post.subreddit}/${post.id}`} onClick={handleClick}>              
+    <Card className={classes.root}>                 
+            {post.videoUrl && <CardMedia 
+                component="video"
+                height="200"
+                autoPlay
+                controls
+                image={post.videoUrl}
+                title={post.title}
+            />}
+             <CardActionArea component={Link} to={`/discussion/${post.subreddit}/${post.id}`} onClick={handleClick}>
                 {post.post_hint === 'image' && <CardMedia
                     component="img"
                     alt=""
@@ -38,16 +46,6 @@ export const PostCard = (props) => {
                     title={post.title}
                     />
                 }
-
-                {post.videoUrl && <CardMedia 
-                    component="video"
-                    height="200"
-                    autoPlay
-                    controls
-                    image={post.videoUrl}
-                    title={post.title}
-                />}
-
             <CardContent>
                 <Grid container direction="row" alignItems="center">
                     <SwapVertOutlinedIcon fontSize="small" />
