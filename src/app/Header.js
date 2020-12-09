@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     display: 'block',
-    fontSize: '2rem',
+    fontSize: '2.5rem',
     textAlign: 'center',
     color: 'white',
     textTransform: 'none',
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(6)}px)`,
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {

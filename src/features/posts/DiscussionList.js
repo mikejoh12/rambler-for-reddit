@@ -23,7 +23,7 @@ export const DiscussionList = () => {
  
     return (
             <div>
-                <Typography variant="h6" color="textPrimary">
+                <Typography variant="h4" color="textPrimary">
                     {`r/${subreddit}`}
                 </Typography>
                 {discussion && discussion.map(post => {

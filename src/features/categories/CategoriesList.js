@@ -13,7 +13,8 @@ const CategoriesListItem = ({ category, icon_img }) => {
     const useStyles = makeStyles({
         root: {
           margin: 10,
-          backgroundColor: '#BBBBBB'
+          backgroundColor: '#D3E3F0',
+          color: '#181EE3'
         }
       });
  
@@ -28,7 +29,7 @@ const CategoriesListItem = ({ category, icon_img }) => {
             <CardActionArea component={Link} to={`/r/${category}`} onClick={handleClick}>
             <CardContent>
                 <img src={icon_img} height="25" alt=""></img>
-                <Typography variant="body2" color="textPrimary">
+                <Typography variant="h6">
                     r/{category}
                 </Typography>
             </CardContent>
@@ -42,7 +43,7 @@ export const CategoriesList = () => {
 
     return (
             <div>
-                <Typography variant="h6" color="textPrimary">
+                <Typography variant="h4" color="textPrimary">
                     Subreddits
                 </Typography>
                 {

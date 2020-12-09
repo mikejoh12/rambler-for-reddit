@@ -6,13 +6,12 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: red[700],
+      main: '#4348EB',
     }
   }
 });

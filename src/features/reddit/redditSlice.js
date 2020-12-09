@@ -66,6 +66,9 @@ export const redditSlice = createSlice({
     searchTarget: 'posts',
     //Predefined subreddit categories
     categories: [
+      { subreddit: 'aviation',
+        icon_img: 'https://styles.redditmedia.com/t5_2qhu8/styles/communityIcon_20l8k4i5rei21.png?width=256&s=b8f03ab48e9ebcc9713ff35e04a4c4127a9a6af1'
+      },
       { subreddit: 'funny',
         icon_img: 'https://a.thumbs.redditmedia.com/kIpBoUR8zJLMQlF8azhN-kSBsjVUidHjvZNLuHDONm8.png'
       },
@@ -74,6 +77,9 @@ export const redditSlice = createSlice({
       },
       { subreddit: 'javascript',
         icon_img: 'https://a.thumbs.redditmedia.com/zDOFJTXd6fmlD58VDGypiV94Leflz11woxmgbGY6p_4.png'
+      },
+      { subreddit: 'Music',
+        icon_img: 'https://b.thumbs.redditmedia.com/UO8Hj8ZnQmYGeE9ZIjKPQEwlX46OBPC_kj2Jqlt5nqo.png'
       },
       { subreddit: 'news',
         icon_img: 'https://a.thumbs.redditmedia.com/E0Bkwgwe5TkVLflBA7WMe9fMSC7DV2UOeff-UpNJeb0.png'   
