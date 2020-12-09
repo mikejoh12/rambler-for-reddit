@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+//import { Grid } from '@material-ui/core'
 
 const CategoriesListItem = ({ category, icon_img }) => {
 
@@ -14,7 +15,7 @@ const CategoriesListItem = ({ category, icon_img }) => {
         root: {
           margin: 10,
           backgroundColor: '#D3E3F0',
-          color: '#181EE3'
+          color: '#181EE3',
         }
       });
  
@@ -46,14 +47,14 @@ export const CategoriesList = () => {
                 <Typography variant="h4" color="textPrimary">
                     Subreddits
                 </Typography>
-                {
-                    categories && categories.map(item => {
-                        return <CategoriesListItem 
-                            category={item.subreddit}
-                            key={item.subreddit}
-                            icon_img={item.icon_img} />
-                    })
-                }
+                    {
+                        categories && categories.map(item => {
+                            return <CategoriesListItem 
+                                category={item.subreddit}
+                                key={item.subreddit}
+                                icon_img={item.icon_img} />
+                        })
+                    }
             </div>
     )
 }

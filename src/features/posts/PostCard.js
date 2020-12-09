@@ -14,7 +14,7 @@ import { Grid } from '@material-ui/core'
 const useStyles = makeStyles({
     root: {
       margin: 10,
-      backgroundColor: '#D3E3F0'
+      backgroundColor: '#D3E3F0',
     }
   });
 
@@ -27,14 +27,17 @@ export const PostCard = (props) => {
     }
 
     return (
-        <Card className={classes.root}>
-            <CardActionArea component={Link} to={`/discussion/${post.subreddit}/${post.id}`} onClick={handleClick}>
-                <CardMedia
+    <Grid item>
+    <Card className={classes.root}>
+        <CardActionArea component={Link} to={`/discussion/${post.subreddit}/${post.id}`} onClick={handleClick}>              
+                {post.post_hint === 'image' && <CardMedia
                     component="img"
                     alt=""
-                    image={post.imgUrl}
+                    height="auto"
+                    image={post.url}
                     title={post.title}
-                />
+                    />
+                }
 
                 {post.videoUrl && <CardMedia 
                     component="video"
@@ -45,33 +48,34 @@ export const PostCard = (props) => {
                     title={post.title}
                 />}
 
-                <CardContent>
-                    <Grid container direction="row" alignItems="center">
-                        <SwapVertOutlinedIcon fontSize="small" />
-                        <Typography variant="caption" align="left">
-                                {post.ups}
-                        </Typography>
-                    </Grid>
-                    
-                    <Typography variant="body1" color="textSecondary">
-                        Posted by {post.author}
-                        <TimeAgo timestamp={post.created_utc} />
+            <CardContent>
+                <Grid container direction="row" alignItems="center">
+                    <SwapVertOutlinedIcon fontSize="small" />
+                    <Typography variant="caption" align="left">
+                            {post.ups}
                     </Typography>
-                    <Typography variant="h6" color="textPrimary">
-                        {post.title}
-                    </Typography>
-                    <Typography>
-                        {`r/${post.subreddit}`}
-                    </Typography>
+                </Grid>
+                
+                <Typography variant="body1" color="textSecondary">
+                    Posted by {post.author}
+                    <TimeAgo timestamp={post.created_utc} />
+                </Typography>
+                <Typography variant="h6" color="textPrimary">
+                    {post.title}
+                </Typography>
+                <Typography>
+                    {`r/${post.subreddit}`}
+                </Typography>
 
-                    <Grid container direction="row" alignItems="center">
-                        <ChatBubbleOutlineIcon fontSize="small" />
-                        <Typography variant="caption" align="left">
-                                {post.num_comments}
-                        </Typography>
-                    </Grid>
-                </CardContent>
-            </CardActionArea>
-        </Card>
+                <Grid container direction="row" alignItems="center">
+                    <ChatBubbleOutlineIcon fontSize="small" />
+                    <Typography variant="caption" align="left">
+                            {post.num_comments}
+                    </Typography>
+                </Grid>
+            </CardContent>
+        </CardActionArea>
+    </Card>
+    </Grid> 
     )
 }

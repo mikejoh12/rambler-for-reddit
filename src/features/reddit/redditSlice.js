@@ -12,12 +12,14 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
   try {
     const response = await axios.get(`https://www.reddit.com/r/${subreddit}.json`)
     const postsArray = response.data.data.children
+    console.log(postsArray)
     const posts = postsArray.map(item => {
       const postData = {
         title: item.data.title,
         author: item.data.author,
         subreddit: item.data.subreddit,
-        imgUrl: item.data.url,
+        url: item.data.url,
+        post_hint: item.data.post_hint,
         thumbnailUrl: item.data.thumbnail,
         id: item.data.id,
         ups: kFormatter(item.data.ups),
@@ -29,6 +31,7 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
       }
       return postData
     })
+    console.log(posts)
     return posts
   } catch (error) {
     console.log(error)
