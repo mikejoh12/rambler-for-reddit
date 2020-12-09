@@ -8,7 +8,38 @@ const initialState = {
     postsStatus: 'idle',
     searchStatus: 'idle',
     discussionStatus: 'idle',
-    categories: [],
+    categories: [
+        { subreddit: 'aviation',
+          icon_img: 'https://styles.redditmedia.com/t5_2qhu8/styles/communityIcon_20l8k4i5rei21.png?width=256&s=b8f03ab48e9ebcc9713ff35e04a4c4127a9a6af1'
+        },
+        { subreddit: 'funny',
+          icon_img: 'https://a.thumbs.redditmedia.com/kIpBoUR8zJLMQlF8azhN-kSBsjVUidHjvZNLuHDONm8.png'
+        },
+        { subreddit: 'gaming',
+        icon_img: 'https://styles.redditmedia.com/t5_2qh03/styles/communityIcon_1isvxgkk7hw51.png?width=256&s=b2c4017083ea0176a3dd4837f6e009bbc8384f15'
+        },
+        { subreddit: 'javascript',
+          icon_img: 'https://a.thumbs.redditmedia.com/zDOFJTXd6fmlD58VDGypiV94Leflz11woxmgbGY6p_4.png'
+        },
+        { subreddit: 'Music',
+          icon_img: 'https://b.thumbs.redditmedia.com/UO8Hj8ZnQmYGeE9ZIjKPQEwlX46OBPC_kj2Jqlt5nqo.png'
+        },
+        { subreddit: 'news',
+          icon_img: 'https://a.thumbs.redditmedia.com/E0Bkwgwe5TkVLflBA7WMe9fMSC7DV2UOeff-UpNJeb0.png'   
+        },
+        { subreddit: 'pics',
+          icon_img: 'https://b.thumbs.redditmedia.com/VZX_KQLnI1DPhlEZ07bIcLzwR1Win808RIt7zm49VIQ.png'
+        },
+        { subreddit: 'reactjs',
+          icon_img: 'https://styles.redditmedia.com/t5_2zldd/styles/communityIcon_fbblpo38vy941.png?width=256&s=13a87a036836ce95570a76feb53f27e61717ad1b'
+        },
+        { subreddit: 'science',
+          icon_img: 'https://styles.redditmedia.com/t5_mouw/styles/communityIcon_xtjipkhhefi41.png?width=256&s=23dbd8fcbd7c632995ddc63929abe0c2ce3b8b4d'
+        },
+        { subreddit: 'webdev',
+          icon_img: 'https://styles.redditmedia.com/t5_2qs0q/styles/communityIcon_5ey8lzmwmxp21.png?width=256&s=5a85d5c682f40e3cf317c560b219585ac0afce78',
+        },
+      ],
     posts: [],
     discussion: [],
     searchTarget: 'posts'
