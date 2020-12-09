@@ -8,22 +8,6 @@ export const kFormatter = num => {
   return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
 }
 
-export const fetchSubreddits = createAsyncThunk('reddit/fetchSubreddits', async () => {
-  try {
-    const response = await axios.get('https://www.reddit.com/subreddits.json')
-    const subredditArray = response.data.data.children
-    const categories = subredditArray.map(item => {
-      return {
-        subreddit: item.data.display_name,
-        icon_img: item.data.icon_img
-      }
-    })
-    return categories
-  } catch (error) {
-    console.log(error)
-  }
-})
-
 export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit => {
   try {
     const response = await axios.get(`https://www.reddit.com/r/${subreddit}.json`)
@@ -77,10 +61,36 @@ export const redditSlice = createSlice({
     postsStatus: 'idle',
     searchStatus: 'idle',
     discussionStatus: 'idle',
-    categories: [],
     posts: [],
     discussion: [],
-    searchTarget: 'posts'
+    searchTarget: 'posts',
+    //Predefined subreddit categories
+    categories: [
+      { subreddit: 'funny',
+        icon_img: 'https://a.thumbs.redditmedia.com/kIpBoUR8zJLMQlF8azhN-kSBsjVUidHjvZNLuHDONm8.png'
+      },
+      { subreddit: 'gaming',
+      icon_img: 'https://styles.redditmedia.com/t5_2qh03/styles/communityIcon_1isvxgkk7hw51.png?width=256&s=b2c4017083ea0176a3dd4837f6e009bbc8384f15'
+      },
+      { subreddit: 'javascript',
+        icon_img: 'https://a.thumbs.redditmedia.com/zDOFJTXd6fmlD58VDGypiV94Leflz11woxmgbGY6p_4.png'
+      },
+      { subreddit: 'news',
+        icon_img: 'https://a.thumbs.redditmedia.com/E0Bkwgwe5TkVLflBA7WMe9fMSC7DV2UOeff-UpNJeb0.png'   
+      },
+      { subreddit: 'pics',
+        icon_img: 'https://b.thumbs.redditmedia.com/VZX_KQLnI1DPhlEZ07bIcLzwR1Win808RIt7zm49VIQ.png'
+      },
+      { subreddit: 'reactjs',
+        icon_img: 'https://styles.redditmedia.com/t5_2zldd/styles/communityIcon_fbblpo38vy941.png?width=256&s=13a87a036836ce95570a76feb53f27e61717ad1b'
+      },
+      { subreddit: 'science',
+        icon_img: 'https://styles.redditmedia.com/t5_mouw/styles/communityIcon_xtjipkhhefi41.png?width=256&s=23dbd8fcbd7c632995ddc63929abe0c2ce3b8b4d'
+      },
+      { subreddit: 'webdev',
+        icon_img: 'https://styles.redditmedia.com/t5_2qs0q/styles/communityIcon_5ey8lzmwmxp21.png?width=256&s=5a85d5c682f40e3cf317c560b219585ac0afce78',
+      },
+    ],
   },
   reducers: {
     searchTargetUpdated(state, action) {
@@ -88,17 +98,6 @@ export const redditSlice = createSlice({
     }
   },
   extraReducers: {
-    //Reducers for fetching subreddits
-    [fetchSubreddits.pending]: (state, action) => {
-      state.subredditStatus = 'loading'
-    },
-    [fetchSubreddits.fulfilled]: (state, action) => {
-      state.subredditStatus = 'succeeded'
-      state.categories = action.payload
-    },
-    [fetchSubreddits.rejected]: (state, action) => {
-      state.subredditStatus = 'failed'
-    },
     //Reducers for fetching posts
     [fetchPosts.pending]: (state, action) => {
       state.postsStatus = 'loading'

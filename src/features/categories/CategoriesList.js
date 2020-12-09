@@ -29,7 +29,7 @@ const CategoriesListItem = ({ category, icon_img }) => {
             <CardContent>
                 <img src={icon_img} height="25" alt=""></img>
                 <Typography variant="body2" color="textPrimary">
-                    {category}
+                    r/{category}
                 </Typography>
             </CardContent>
             </CardActionArea>
