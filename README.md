@@ -10,4 +10,4 @@ React, Redux, Material UI, and React Router. Jest, Enzyme, and TestCafe for basi
 
 ## Features
 
-View the top Reddit posts, images, and discussions in these subreddits: aviation, funny, javascript, Music, news, pics, reactjs, science and webdev.
+View the top Reddit posts, images, videos, and discussions in these subreddits: aviation, funny, javascript, Music, news, pics, reactjs, science and webdev.
