@@ -26,12 +26,15 @@ export const DiscussionList = () => {
                 <Typography variant="h4" color="textPrimary">
                     {`r/${subreddit}`}
                 </Typography>
-                {discussion && discussion.map(post => {
+                {discussion.length ? discussion.map(post => {
                     return <DiscussionCard 
                         post={post}
                         key={post.id} />
                     })
-                }
+                :
+                <Typography variant="h6" color="textPrimary">
+                    No replies found.
+                </Typography>}
             </div>
     )
 }
