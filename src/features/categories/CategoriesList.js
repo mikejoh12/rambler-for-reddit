@@ -44,7 +44,7 @@ export const CategoriesList = () => {
 
     return (
             <div>
-                <Typography variant="h4" color="textPrimary">
+                <Typography variant="h5" color="textPrimary">
                     Subreddits
                 </Typography>
                     {

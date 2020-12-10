@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginBottom: '20px'
   },
   appbar: {
     alignItems: 'center'
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     display: 'block',
-    fontSize: '2.5rem',
+    fontSize: '2.2rem',
     textAlign: 'center',
     color: 'white',
     textTransform: 'none',
