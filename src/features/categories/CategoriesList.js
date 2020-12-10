@@ -30,7 +30,7 @@ const CategoriesListItem = ({ category, icon_img }) => {
             <CardActionArea component={Link} to={`/r/${category}`} onClick={handleClick}>
             <CardContent>
                 <img src={icon_img} height="25" alt=""></img>
-                <Typography variant="h6">
+                <Typography variant="body1">
                     r/{category}
                 </Typography>
             </CardContent>
