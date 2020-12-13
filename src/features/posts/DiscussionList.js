@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { DiscussionCard } from './DiscussionCard'
 import { selectDiscussion, fetchDiscussion, searchTargetUpdated, selectDiscussionStatus } from '../reddit/redditSlice'
 import { Typography } from '@material-ui/core'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const DiscussionList = () => {
 
@@ -27,6 +28,9 @@ export const DiscussionList = () => {
                 <Typography variant="h4" color="textPrimary">
                     {`r/${subreddit}`}
                 </Typography>
+
+                {(discussionStatus === 'loading') && <CircularProgress style={{marginTop: 30}} />}
+
                 {(discussion && discussionStatus === 'succeeded') && discussion.map(post => {
                     return <DiscussionCard 
                         post={post}
