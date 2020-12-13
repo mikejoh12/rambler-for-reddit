@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { DiscussionCard } from './DiscussionCard'
-import { selectDiscussion, fetchDiscussion, searchTargetUpdated } from '../reddit/redditSlice'
+import { selectDiscussion, fetchDiscussion, searchTargetUpdated, selectDiscussionStatus } from '../reddit/redditSlice'
 import { Typography } from '@material-ui/core'
 
 export const DiscussionList = () => {
 
     let { id, subreddit } = useParams()
     
+    const discussionStatus = useSelector(selectDiscussionStatus);
     const discussion = useSelector(selectDiscussion);
     const dispatch = useDispatch()
 
@@ -26,7 +27,7 @@ export const DiscussionList = () => {
                 <Typography variant="h4" color="textPrimary">
                     {`r/${subreddit}`}
                 </Typography>
-                {discussion && discussion.map(post => {
+                {(discussion && discussionStatus === 'succeeded') && discussion.map(post => {
                     return <DiscussionCard 
                         post={post}
                         key={post.id} />

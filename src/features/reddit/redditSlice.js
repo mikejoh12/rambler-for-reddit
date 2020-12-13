@@ -132,6 +132,8 @@ export const redditSlice = createSlice({
 export const { searchTargetUpdated } = redditSlice.actions
 export const selectCategories = state => state.reddit.categories
 export const selectPosts = state => state.reddit.posts
+export const selectDiscussionStatus = state => state.reddit.discussionStatus
+export const selectPostsStatus = state => state.reddit.postsStatus
 export const selectDiscussion = state => state.reddit.discussion
 export const selectSearchTarget = state => state.reddit.searchTarget
 export default redditSlice.reducer
