@@ -25,18 +25,22 @@ export const DiscussionList = () => {
  
     return (
             <div>
-                <Typography variant="h4" color="textPrimary">
+                <Typography variant="h5" color="textPrimary">
                     {`r/${subreddit}`}
                 </Typography>
 
-                {(discussionStatus === 'loading') && <CircularProgress style={{marginTop: 30}} />}
+                { (discussionStatus === 'loading') && <CircularProgress style={{marginTop: 30}} /> }
 
-                {(discussion && discussionStatus === 'succeeded') && discussion.map(post => {
+                { (discussion && discussionStatus === 'succeeded') && discussion.map(post => {
                     return <DiscussionCard 
                         post={post}
                         key={post.id} />
-                    })
-                }
+                    }) }
+                
+                { (!discussion.length && discussionStatus === 'succeeded') &&
+                <Typography variant="h6" color="textPrimary">
+                    No replies found.
+                </Typography> }
             </div>
     )
 }

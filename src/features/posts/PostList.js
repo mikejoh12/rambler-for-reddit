@@ -26,7 +26,7 @@ export const PostList = () => {
 
     return (
         <div>
-            <Typography variant="h4" color="textPrimary">
+            <Typography variant="h5" color="textPrimary">
                 {`r/${subreddit}`}
             </Typography>
 

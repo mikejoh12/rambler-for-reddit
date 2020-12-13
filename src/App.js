@@ -22,10 +22,10 @@ function App() {
             <Grid item xs={12}>
               <Header />
             </Grid>
-            <Grid item xs={false} md={3}> 
+            <Grid item xs={false} sm={1} md={2} lg={3}> 
             </Grid>
             
-            <Grid item xs={7} md={4} align="center">
+            <Grid item xs={8} sm={7} md={5} lg={4} align="center">
               <Switch>
                 <Route exact path="/">
                   <Redirect to="/r/pics" />
@@ -36,11 +36,11 @@ function App() {
               </Switch>
             </Grid>
 
-            <Grid item xs={5} md={2} align="center">
+            <Grid item xs={4} sm={3} md={3} lg={2} align="center">
               <CategoriesList />
             </Grid>
             
-            <Grid item xs={false} md={3}>
+            <Grid item xs={false} sm={1} md={2} lg={3}> 
             </Grid>
         </Grid>
         </Paper>

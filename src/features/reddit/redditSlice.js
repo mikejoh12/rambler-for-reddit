@@ -17,7 +17,8 @@ export const fetchPosts = createAsyncThunk('reddit/fetchPosts', async subreddit 
         title: item.data.title,
         author: item.data.author,
         subreddit: item.data.subreddit,
-        imgUrl: item.data.url,
+        url: item.data.url,
+        post_hint: item.data.post_hint,
         thumbnailUrl: item.data.thumbnail,
         id: item.data.id,
         ups: kFormatter(item.data.ups),
@@ -71,9 +72,6 @@ export const redditSlice = createSlice({
       },
       { subreddit: 'funny',
         icon_img: 'https://a.thumbs.redditmedia.com/kIpBoUR8zJLMQlF8azhN-kSBsjVUidHjvZNLuHDONm8.png'
-      },
-      { subreddit: 'gaming',
-      icon_img: 'https://styles.redditmedia.com/t5_2qh03/styles/communityIcon_1isvxgkk7hw51.png?width=256&s=b2c4017083ea0176a3dd4837f6e009bbc8384f15'
       },
       { subreddit: 'javascript',
         icon_img: 'https://a.thumbs.redditmedia.com/zDOFJTXd6fmlD58VDGypiV94Leflz11woxmgbGY6p_4.png'
