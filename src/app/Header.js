@@ -5,8 +5,8 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    marginLeft: 0,
-    width: '100%',
+    marginLeft: 2,
+    width: '50%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(5),
       width: 'auto',
@@ -86,9 +86,11 @@ export function Header() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appbar}>
         <Toolbar>
-          <Button component={Link} to="/r/pics" className={classes.title} size="medium">
-            Rambler for Reddit
-          </Button>
+          <Typography className={classes.title} variant="h1">
+            <Box fontWeight="fontWeightMedium">
+              Rambler for Reddit
+            </Box>
+          </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -98,7 +100,7 @@ export function Header() {
                 value={searchTerm}
                 required
                 onChange={onSearchTermChanged}
-                placeholder="Search page.."
+                placeholder="Search.."
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
