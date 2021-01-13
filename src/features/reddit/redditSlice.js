@@ -85,11 +85,20 @@ export const redditSlice = createSlice({
       { subreddit: 'pics',
         icon_img: 'https://b.thumbs.redditmedia.com/VZX_KQLnI1DPhlEZ07bIcLzwR1Win808RIt7zm49VIQ.png'
       },
+      { subreddit: 'programming',
+        icon_img: 'https://styles.redditmedia.com/t5_2fwo/styles/communityIcon_1bqa1ibfp8q11.png?width=256&s=45361614cdf4a306d5510b414d18c02603c7dd3c'
+      },
       { subreddit: 'reactjs',
         icon_img: 'https://styles.redditmedia.com/t5_2zldd/styles/communityIcon_fbblpo38vy941.png?width=256&s=13a87a036836ce95570a76feb53f27e61717ad1b'
       },
       { subreddit: 'science',
         icon_img: 'https://styles.redditmedia.com/t5_mouw/styles/communityIcon_xtjipkhhefi41.png?width=256&s=23dbd8fcbd7c632995ddc63929abe0c2ce3b8b4d'
+      },
+      { subreddit: 'technology',
+        icon_img: 'https://b.thumbs.redditmedia.com/J_fCwTYJkoM-way-eaOHv8AOHoF_jNXNqOvPrQ7bINY.png',
+      },
+      { subreddit: 'tennis',
+        icon_img: 'https://styles.redditmedia.com/t5_2qiq1/styles/communityIcon_dwmyh6nx1n821.png?width=256&s=40e1f746bbbe6edbc3da2ea5b1419fa687322c13'
       },
       { subreddit: 'webdev',
         icon_img: 'https://styles.redditmedia.com/t5_2qs0q/styles/communityIcon_5ey8lzmwmxp21.png?width=256&s=5a85d5c682f40e3cf317c560b219585ac0afce78',
