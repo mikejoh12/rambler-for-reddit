@@ -5,6 +5,7 @@ import { PostList } from './PostList'
 import { TimeAgo } from './TimeAgo'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
+import React from 'react';
 const { shallow } = require("enzyme")
 
 const mockStore = configureStore([])

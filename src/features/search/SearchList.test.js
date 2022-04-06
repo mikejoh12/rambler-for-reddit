@@ -1,6 +1,8 @@
-import { SearchList } from './SearchList'
-import { Provider } from 'react-redux'
-import configureStore from 'redux-mock-store'
+import { SearchList } from './SearchList';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import React from 'react';
+
 const { shallow } = require("enzyme")
 
 const mockStore = configureStore([])
