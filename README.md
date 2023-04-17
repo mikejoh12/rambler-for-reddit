@@ -1,4 +1,5 @@
 # Rambler for Reddit
+This project is now archived and read-only.
 
 A simple Reddit client for browsing selected subreddit categories. This project was created as an assignment in Codecademy's Full Stack Engineer Path.
 
